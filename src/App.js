@@ -2,18 +2,28 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
+import List from './List';
+
 
 class App extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
+        inventory: this.props.inventory
       }
     }
-  getApiInfo() {
+  getApiInfo(e) {
+    e.preventDefault();
     axios.get('http://localhost:3030/products?$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
-  .then(function (response) {
-    console.log(response.data.data[0].name);
+  .then((response) => {
+    console.log(response.data.data);
+    var newInventory = response.data.data.slice(0);
+    console.log(newInventory);
+    this.setState({
+      inventory: newInventory
+    })
+    console.log(this.state.inventory);
   })
   .catch(function (error) {
     console.log(error);
@@ -29,13 +39,13 @@ class App extends Component {
         <p className="App-intro">
         Welcome, we hope you enjoy your shopping experience.
         </p>
-        <button onClick={this.getApiInfo.bind(this)}>Get Data</button>
         <div>
+        <List inventory={this.state.inventory} getApiInfo={this.getApiInfo.bind(this)} />
 
         </div>
       </div>
     );
   }
-  }
+}
 
 export default App;
