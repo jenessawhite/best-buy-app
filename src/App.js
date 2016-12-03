@@ -4,8 +4,8 @@ import axios from 'axios';
 import './App.css';
 import List from './List';
 
-
 class App extends Component {
+
   constructor(props) {
       super(props);
       this.state = {
@@ -33,12 +33,13 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>"The Best of the Best Buy API"</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+        Welcome, we hope you enjoy your shopping experience.
         </p>
         <List inventory={this.state.inventory} getApiInfo={this.getApiInfo.bind(this)} />
+
       </div>
     );
   }
