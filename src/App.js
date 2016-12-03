@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 import List from './List';
+import DisplayImage from './DisplayImage.js'
 
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
         </p>
         <div>
         <List inventory={this.state.inventory} getApiInfo={this.getApiInfo.bind(this)} />
+        <DisplayImage inventory={this.state.inventory} getApiInfo={this.getApiInfo.bind(this)} />
 
         </div>
       </div>
