@@ -16,8 +16,8 @@ class App extends Component {
 
     onDeleteClick(id, e) {
       console.log("You clicked delete, my friend!", id);
-
-      // Axios to delete an item with id should go here.
+      console.log('http://localhost:3030/products/'+id)
+      axios.delete('http://localhost:3030/products/'+id)
     }
 
   getApiInfo(e) {
