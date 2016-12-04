@@ -16,8 +16,15 @@ class App extends Component {
 
     onDeleteClick(id, e) {
       console.log("You clicked delete, my friend!", id);
-      console.log('http://localhost:3030/products/'+id)
-      axios.delete('http://localhost:3030/products/'+id)
+
+      var confirmed = confirm("Do you want to permanently delete this product from the database?")
+      if (confirmed == true){
+        console.log('http://localhost:3030/products/'+id)
+        axios.delete('http://localhost:3030/products/'+id)
+      } else {
+        console.log("Whew!")
+      }
+
     }
 
   getApiInfo(e) {
