@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -19,18 +23,30 @@
 }
 
 .listImage {
-  max-height: 8vh;
+  max-height: 15vh;
   width: auto;
+  text-align: left;
 }
 
 ul {
   list-style: none;
 }
 
+li {
+  margin: 1rem;
+}
+
 .liContainerDiv {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
+
+.leftDiv {
+  max-width: 25%
+}
+
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

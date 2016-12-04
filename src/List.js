@@ -20,14 +20,17 @@ class List extends Component {
                 <div className="leftDiv">
                 <span>{item.name}</span>
                 <br />
-                <img className="listImage" src={item.image} />
+                <img role="presentation" className="listImage" src={item.image} />
                 <br />
-                <span>{item.price}</span>
+                <span>"Price in USD: "{item.price}</span>
                 </div>
                 <div className="rightDiv">
                 <span>{item.model}</span>
                 <br />
                 <span>{item.description}</span>
+                </div>
+                <div className="deleteDiv">
+                <button>Delete from list</button>
                 </div>
                 </div>
 
