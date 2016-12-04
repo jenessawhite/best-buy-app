@@ -19,6 +19,8 @@ class List extends Component {
 
                 <span>{item.name}</span>
 
+                <img className="listImage" src={item.image} />
+
               </li>
             )
           })}

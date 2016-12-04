@@ -3,6 +3,12 @@ import {View, Image } from 'react';
 import './App.css';
 
 class DisplayImage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      listItems: []
+    }
+    
   render() {
     return (
       <div>
