@@ -15,25 +15,26 @@ class List extends Component {
         <ul>
           {this.props.inventory.map((item, index) => {
             return (
-              <li key={index}>
+              <li key={item.id}>
                 <div className="liContainerDiv">
                 <div className="leftDiv">
-                <span>{item.name}</span>
-                <br />
-                <img role="presentation" className="listImage" src={item.image} />
-                <br />
-                <span>"Price in USD: "{item.price}</span>
+                  <span>{item.name}</span>
+                  <br />
+                  <span>Product ID: {item.id}</span>
+                  <br />
+                  <img role="presentation" className="listImage" src={item.image} />
+                  <br />
+                  <span>Price (USD): {item.price}</span>
                 </div>
                 <div className="rightDiv">
-                <span>{item.model}</span>
-                <br />
-                <span>{item.description}</span>
+                  <span>Product Model:{item.model}</span>
+                  <br />
+                  <span>Product Description:{item.description}</span>
                 </div>
                 <div className="deleteDiv">
-                <button>Delete from list</button>
+                  <button>Delete from list</button>
                 </div>
                 </div>
-
               </li>
             )
           })}
