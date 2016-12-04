@@ -13,6 +13,8 @@ class List extends Component {
 
   onDeleteClick(index, e) {
     console.log("You clicked delete, my friend!")
+    var numID = this.props.getApiInfo
+    console.log(numID)
 
   }
 
