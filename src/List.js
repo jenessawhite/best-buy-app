@@ -9,13 +9,6 @@ class List extends Component {
     }
   }
 
-
-
-  onDeleteClick(index, e) {
-    console.log("You clicked delete, my friend!")
-
-  }
-
   render() {
     return (
       <div>
@@ -38,7 +31,7 @@ class List extends Component {
                 <span>{item.description}</span>
                 </div>
                 <div className="deleteDiv">
-                <button onClick={this.onDeleteClick.bind(this)} key={item.id}>Delete from list</button>
+                <button onClick={this.props.onDeleteClick.bind(this, item.id)} key={item.id}>Delete from list</button>
                 </div>
                 </div>
 

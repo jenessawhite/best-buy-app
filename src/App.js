@@ -14,8 +14,10 @@ class App extends Component {
       }
     }
 
-    onDeleteClick(index, e) {
-      console.log("You clicked delete, my friend!")
+    onDeleteClick(id, e) {
+      console.log("You clicked delete, my friend!", id);
+
+      // Axios to delete an item with id should go here.
     }
 
   getApiInfo(e) {
@@ -45,7 +47,11 @@ class App extends Component {
         Welcome, we hope you enjoy your shopping experience.
         </p>
         <div>
-        <List inventory={this.state.inventory} getApiInfo={this.getApiInfo.bind(this)} />
+        <List
+          inventory={this.state.inventory}
+          getApiInfo={this.getApiInfo.bind(this)}
+          onDeleteClick={this.onDeleteClick.bind(this)
+        }/>
 
         </div>
       </div>
