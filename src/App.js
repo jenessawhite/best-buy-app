@@ -13,6 +13,11 @@ class App extends Component {
         inventory: this.props.inventory
       }
     }
+
+    onDeleteClick(index, e) {
+      console.log("You clicked delete, my friend!")
+    }
+
   getApiInfo(e) {
     e.preventDefault();
     axios.get('http://localhost:3030/products?$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')

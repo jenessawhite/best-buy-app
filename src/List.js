@@ -8,6 +8,14 @@ class List extends Component {
       listItems: []
     }
   }
+
+
+
+  onDeleteClick(index, e) {
+    console.log("You clicked delete, my friend!")
+
+  }
+
   render() {
     return (
       <div>
@@ -15,14 +23,14 @@ class List extends Component {
         <ul>
           {this.props.inventory.map((item, index) => {
             return (
-              <li key={index}>
+              <li>
                 <div className="liContainerDiv">
                 <div className="leftDiv">
                 <span>{item.name}</span>
                 <br />
                 <img role="presentation" className="listImage" src={item.image} />
                 <br />
-                <span>"Price in USD: "{item.price}</span>
+                <span>"Price in USD: "{item.price} plus {item.shipping} shipping</span>
                 </div>
                 <div className="rightDiv">
                 <span>{item.model}</span>
@@ -30,7 +38,7 @@ class List extends Component {
                 <span>{item.description}</span>
                 </div>
                 <div className="deleteDiv">
-                <button>Delete from list</button>
+                <button onClick={this.onDeleteClick.bind(this)} key={item.id}>Delete from list</button>
                 </div>
                 </div>
 
