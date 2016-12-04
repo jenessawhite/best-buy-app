@@ -16,10 +16,20 @@ class List extends Component {
           {this.props.inventory.map((item, index) => {
             return (
               <li key={index}>
-
+                <div className="liContainerDiv">
+                <div className="leftDiv">
                 <span>{item.name}</span>
-
+                <br />
                 <img className="listImage" src={item.image} />
+                <br />
+                <span>{item.price}</span>
+                </div>
+                <div className="rightDiv">
+                <span>{item.model}</span>
+                <br />
+                <span>{item.description}</span>
+                </div>
+                </div>
 
               </li>
             )
