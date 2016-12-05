@@ -11,7 +11,6 @@ class List extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.getApiInfo.bind(this)}>Get Data</button>
         <ul>
           {this.props.inventory.map((item, index) => {
             return (

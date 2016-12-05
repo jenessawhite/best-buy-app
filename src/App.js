@@ -6,65 +6,66 @@ import List from './List';
 
 
 class App extends Component {
-
   constructor(props) {
-      super(props);
-      this.state = {
-        inventory: this.props.inventory,
-        newProductName: '',
-        newProductModel: '',
-        newProductDescription: '',
-        newProductPrice: undefined,
-        newProductType: '',
-        newProductImage: '',
-        newProductUpc: ''
+    super(props);
+    this.state = {
+      inventory: this.props.inventory,
+      name: '',
+      type: '',
+      ID: '' ,
+      model: '',
+      price: 1000000,
+      shipping: 0,
+      upc: '',
+      image: '',
+      description: '',
       }
     }
-  getApiInfo(e) {
-    e.preventDefault();
-    axios.get('http://localhost:3030/products?$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
-  .then((response) => {
-    console.log(response.data.data);
-    var newInventory = response.data.data.slice(0);
-    console.log(newInventory);
-    this.setState({
-      inventory: newInventory
+    componentDidMount () {
+    axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20')
+    .then((response) => {
+      var newInventory = response.data.data.slice(0);
+      this.setState({
+        inventory: newInventory
+      })
     })
-    console.log(this.state.inventory);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+    .catch((error) => {
+      alert(error);
+      console.log(error);
+    });
   }
+
   onFormSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3030/products', {
-      name: this.state.newProductName,
-      model: this.state.newProductModel,
-      description: this.state.newProductDescription,
-      price: this.state.newProductPrice,
-      type: this.state.newProductType,
-      image: this.state.newProductImage,
-      upc: this.state.newProductUpc
-    }).then((response) => {
-        console.log(response);
-        axios.get('http://localhost:3030/products?$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
-        .then((response) => {
-          console.log(response.data.data);
-          var newInventory = response.data.data.slice(0);
-          console.log(newInventory);
-          this.setState({
-            inventory: newInventory
-          })
-          console.log(this.state.inventory);
+    let newProduct = {
+      name: this.state.name,
+      model: this.state.model,
+      description: this.state.description,
+      price: this.state.price,
+      type: this.state.type,
+      image: this.state.image,
+      upc: this.state.upc
+    };
+    axios.post('http://localhost:3030/products', newProduct)
+    .then((response) => {
+      axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20').then((response) => {
+        let newInventory = response.data.data.slice(0);
+        this.setState({
+          inventory: newInventory
         })
-        .catch((error) => {
-          console.log(error);
-        });
-      }).catch((error) => {
-        console.log(error);
-      });
+      })
+    }).catch((error) => {
+      console.log(error);
+      alert(error);
+    })
   }
+
+  onChanges(inputChanges, e) {
+  var changes = {};
+  changes[inputChanges] = e.target.value;
+  this.setState(changes);
+  }
+
   render() {
     return (
       <div className="App">
@@ -76,39 +77,39 @@ class App extends Component {
         Welcome, we hope you enjoy your shopping experience.
         </p>
         <div className="App-list-container">
-          <List inventory={this.state.inventory} getApiInfo={this.getApiInfo.bind(this)} />
+          <List inventory={this.state.inventory} />
         </div>
         <div className="App-form-container">
           <h3 className="form-container_header">Submit your own product</h3>
           <form className="form-container_form" onSubmit={this.onFormSubmit.bind(this)}>
             Product Name:
-            <input value={this.state.newProductName} type="text" name="name" required />
+            <input onChange={this.onChanges.bind(this, 'name')} value={this.state.name} type="text" name="name" required />
             <br />
             Product Model:
-            <input value={this.state.newProductModel} type="text" name="model" required />
+            <input onChange={this.onChanges.bind(this, 'model')} value={this.state.model} type="text" name="model" required />
             <br />
             Product Description:
-            <input value={this.state.newProductDescription} type="textarea" name="description" required />
+            <input onChange={this.onChanges.bind(this, 'description')} value={this.state.description} type="textarea" name="description" required />
             <br />
             Product Price:
-            <input value={this.state.newProductPrice} type="number" step="0.01" name="price" min="0.01" required />
+            <input onChange={this.onChanges.bind(this, 'price')} value={this.state.price} type="number" step="0.01" name="price" min="0.01" required />
             <br />
             If you have an image of the product please upload it here:
-            <input value={this.state.newProductImage} type="file" name="image" accept="image/*" />
+            <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" />
             <br />
             Please select product type:
-            <select value={this.state.newProductType} name="type" required>
-              <option value="" disabled="disabled" selected="selected">Choose an Option</option>
+            <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" required>
+              <option value="" disabled="disabled" defaultValue>Choose an Option</option>
               <option value="blackTie">Black Tie</option>
               <option value="bundle">Bundle</option>
-              <option value="hardgood">Hard Good</option>
+              <option value="hardGood">Hard Good</option>
               <option value="movie">Movie</option>
               <option value="music">Music</option>
               <option value="software">Software</option>
             </select>
             <br />
             Product UPC:
-            <input value={this.state.newProductUpc} type="text" name="upc" required />
+            <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" required />
             <br />
             <input type="submit" value="Submit" />
           </form>
