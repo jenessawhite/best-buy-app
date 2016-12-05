@@ -111,6 +111,12 @@ class App extends Component {
         <p className="App-intro">
         Welcome, we hope you enjoy your shopping experience.
         </p>
+        <div className="App-search-container">
+          <form onSubmit={this.getSearchedInfo.bind(this)}>
+            <input className="searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
+            <button>Search</button>
+          </form>
+        </div>
         <div className="App-list-container">
         <List
           inventory={this.state.inventory}
@@ -149,10 +155,6 @@ class App extends Component {
             <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" required />
             <br />
             <input type="submit" value="Submit" />
-          </form>
-          <form onSubmit={this.getSearchedInfo.bind(this)}>
-            <input className="searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
-            <button>Search</button>
           </form>
       </div>
     </div>
