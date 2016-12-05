@@ -12,10 +12,9 @@ class App extends Component {
       inventory: this.props.inventory,
       name: '',
       type: '',
-      ID: '' ,
+      id: '' ,
       model: '',
-      price: 1000000,
-      shipping: 0,
+      price: 0,
       upc: '',
       image: '',
       description: '',
@@ -67,6 +66,41 @@ class App extends Component {
     this.setState(changes);
   }
 
+  onDeleteClick(id, e) {
+    var confirmed = confirm("Do you want to permanently delete this product from the database?")
+    if (confirmed === true){
+      console.log('http://localhost:3030/products/'+id)
+      axios.delete('http://localhost:3030/products/'+id)
+    } else {
+      console.log("Whew!")
+    }
+
+  }
+
+  onNewValue(e) {
+   this.setState({
+     newItemValue: e.target.value
+   });
+  }
+
+  getSearchedInfo(e){
+    e.preventDefault();
+    console.log(this.state.newItemValue)
+    axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
+    .then((response) => {
+      console.log(response.data.data);
+      var newInventory = response.data.data.slice(0);
+      console.log(newInventory);
+      this.setState({
+        inventory: newInventory
+      })
+      console.log(this.state.inventory);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -78,7 +112,9 @@ class App extends Component {
         Welcome, we hope you enjoy your shopping experience.
         </p>
         <div className="App-list-container">
-          <List inventory={this.state.inventory} />
+        <List
+          inventory={this.state.inventory}
+          onDeleteClick={this.onDeleteClick.bind(this)} />
         </div>
         <div className="App-form-container">
           <h3 className="form-container_header">Submit your own product</h3>
@@ -114,8 +150,12 @@ class App extends Component {
             <br />
             <input type="submit" value="Submit" />
           </form>
-        </div>
+          <form onSubmit={this.getSearchedInfo.bind(this)}>
+            <input className="searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
+            <button>Search</button>
+          </form>
       </div>
+    </div>
     );
   }
 }

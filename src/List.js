@@ -8,6 +8,7 @@ class List extends Component {
       listItems: []
     }
   }
+
   render() {
     return (
       <div>
@@ -16,23 +17,27 @@ class List extends Component {
             return (
               <li key={item.id}>
                 <div className="liContainerDiv">
-                <div className="leftDiv">
-                  <span>{item.name}</span>
-                  <br />
-                  <span>Product ID: {item.id}</span>
-                  <br />
-                  <img role="presentation" className="listImage" src={item.image} />
-                  <br />
-                  <span>Price (USD): {item.price}</span>
-                </div>
-                <div className="rightDiv">
-                  <span>Product Model:{item.model}</span>
-                  <br />
-                  <span>Product Description:{item.description}</span>
-                </div>
-                <div className="deleteDiv">
-                  <button>Delete from list</button>
-                </div>
+                  <div className="leftDiv">
+                    <span>{item.name}</span>
+                    <br />
+                    <span>Product ID: {item.id}</span>
+                    <br />
+                    <a href={item.url}>
+                    <img role="presentation" className="listImage" src={item.image} />
+                    </a>
+                    <span className="clickMe">Click photo to go to Best Buy site</span>
+
+                    <br />
+                    <span>Price (USD): {item.price} plus {item.shipping} shipping</span>
+                  </div>
+                  <div className="rightDiv">
+                    <span>Product Model:{item.model}</span>
+                    <br />
+                    <span>Product Description:{item.description}</span>
+                  </div>
+                  <div className="deleteDiv">
+                    <button onClick={this.props.onDeleteClick.bind(this, item.id)} key={item.id}>Delete from list</button>
+                  </div>
                 </div>
               </li>
             )
