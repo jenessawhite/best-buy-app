@@ -21,7 +21,11 @@ class List extends Component {
                 <div className="leftDiv">
                 <span>{item.name}</span>
                 <br />
+                <a href={item.url}>
                 <img role="presentation" className="listImage" src={item.image} />
+                </a>
+                <br />
+                <span className="clickMe">Click photo to go to Best Buy site</span>
                 <br />
                 <span>"Price in USD: "{item.price} plus {item.shipping} shipping</span>
                 </div>
