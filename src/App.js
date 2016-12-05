@@ -36,7 +36,7 @@ class App extends Component {
     getSearchedInfo(e){
       e.preventDefault()
       console.log(this.state.newItemValue)
-      axios.get('http://localhost:3030/products/'+ this.state.newItemValue)
+      axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
       .then((response) => {
         console.log(response.data.data);
         var newInventory = response.data.data.slice(0);
