@@ -21,7 +21,8 @@ class App extends Component {
       description: '',
       }
     }
-    componentDidMount () {
+
+  componentDidMount () {
     axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20')
     .then((response) => {
       var newInventory = response.data.data.slice(0);
@@ -61,9 +62,9 @@ class App extends Component {
   }
 
   onChanges(inputChanges, e) {
-  var changes = {};
-  changes[inputChanges] = e.target.value;
-  this.setState(changes);
+    var changes = {};
+    changes[inputChanges] = e.target.value;
+    this.setState(changes);
   }
 
   render() {
