@@ -137,7 +137,7 @@ class App extends Component {
             Product Price:
             <input onChange={this.onChanges.bind(this, 'price')} value={this.state.price} type="number" step="0.01" name="price" min="0.01" required />
             <br />
-            If you have an image of the product please upload it here:
+            Product Image URL:
             <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" />
             <br />
             Please select product type:
@@ -156,6 +156,11 @@ class App extends Component {
             <br />
             <input type="submit" value="Submit" />
           </form>
+      </div>
+      <div className="App-footer">
+        <a href="https://developer.bestbuy.com" className="App-footer-BBLogo">
+          <img src="https://developer.bestbuy.com/images/bestbuy-logo.png" alt="Best Buy Developer" />
+        </a>
       </div>
     </div>
     );
