@@ -1,9 +1,12 @@
-* {
+html, body {
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
 }
 
 .App {
   text-align: center;
+  font-family: 'Lato', sans-serif;
 }
 
 .App-logo {
@@ -13,9 +16,10 @@
 
 .App-header {
   background-color: #053F68;
-  height: 150px;
-  padding: 20px;
-  color: white;
+ height: 150px;
+ padding: 20px;
+ color: white;
+ font-family: 'Roboto', sans-serif;
 }
 
 .App-intro {
@@ -51,10 +55,24 @@ li {
 
 .formInputs {
   border: 1px solid #032237;
+  border-radius: 3px;
   outline: none;
+  width: 150px;
+  height: 22px;
+  margin-bottom: 10px;
 }
 
+.searchButton {
+  background-color: #3C92CA;
+  color: #032237;
+  border: 1px solid #032237;
+}
 
+.searchButton:hover {
+  background-color: #032237;
+  color: #3C92CA;
+  border: 1px solid #3C92CA;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

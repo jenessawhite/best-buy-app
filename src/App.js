@@ -140,7 +140,7 @@ class App extends Component {
                 <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" className="formInputs" placeholder="Product UPC" required />
                 <br />
 
-                <input type="submit" value="Submit" className="formInputs" />
+                <input type="submit" value="Submit" className="formInputs searchButton" />
               </form>
 
     return (
