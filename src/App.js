@@ -19,12 +19,13 @@ class App extends Component {
       upc: '',
       image: '',
       description: '',
-      isFormShown: false
+      isFormShown: false,
+      lastSearched: 'http://localhost:3030/products?$sort[price]=-1&$limit=20'
       }
     }
 
   componentDidMount () {
-    axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20')
+    axios.get(this.state.lastSearched)
     .then((response) => {
       var newInventory = response.data.data.slice(0);
       this.setState({
@@ -74,7 +75,7 @@ class App extends Component {
       console.log('http://localhost:3030/products/'+id)
       axios.delete('http://localhost:3030/products/'+id)
       .then((response) => {
-        axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20').then((response) => {
+        axios.get(this.state.lastSearched).then((response) => {
           let newInventory = response.data.data.slice(0);
           this.setState({
             inventory: newInventory
@@ -100,13 +101,14 @@ class App extends Component {
   getSearchedInfo(e){
     e.preventDefault();
     console.log(this.state.newItemValue)
-    axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
+    axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=20')
     .then((response) => {
       console.log(response.data.data);
       var newInventory = response.data.data.slice(0);
       console.log(newInventory);
       this.setState({
-        inventory: newInventory
+        inventory: newInventory,
+        lastSearched: 'http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=20'
       })
       console.log(this.state.inventory);
     })
