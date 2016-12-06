@@ -45,7 +45,7 @@ ul {
 
 li {
   margin: 1rem;
-  border: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
 }
 
 select {
@@ -59,26 +59,28 @@ select {
 }
 
 .leftDiv {
-  width: 25%;
-  margin-right: 0;
+  width: 30%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .clickMe {
-  font-size: 10px;
+  font-size: 9px;
 }
 .rightDiv {
   padding: 5%;
-  width: 40%;
+  width: 65%;
   text-align: left;
 }
 .deleteDiv {
-  width: 15%;
-  padding: 1%;
-  text-align: right;
+  display: flex;
+  padding-bottom: 2%;
+  justify-content: center;
 }
 
 .deleteButton {
   background-color: #FF3333;
+  color: #fafafa;
   padding: .5rem 1rem;
   border: none;
   border-radius: 3px;
@@ -86,12 +88,12 @@ select {
 }
 
 .deleteButton:hover {
+  background-color: #ca2929;
   color: #d9d9d9;
 }
 
 .App-searh-form {
   margin: 0 2rem 1rem;
-  width: 90vh;
 }
 
 

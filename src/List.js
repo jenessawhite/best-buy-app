@@ -36,10 +36,11 @@ class List extends Component {
                     <br />
                     <span>Product Description: {item.description}</span>
                   </div>
+                  </div>
                   <div className="deleteDiv">
                     <button className="deleteButton" onClick={this.props.onDeleteClick.bind(this, item.id)} key={item.id}>Delete</button>
                   </div>
-                </div>
+
               </li>
             )
           })}
