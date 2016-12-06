@@ -7,6 +7,10 @@ html, body {
 .App {
   text-align: center;
   font-family: 'Lato', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
 }
 
 .App-logo {
@@ -15,7 +19,7 @@ html, body {
 }
 
 .App-header {
-  background-color: #053F68;
+  background-color: #032237;
   height: 150px;
   padding: 20px;
   color: white;
@@ -75,30 +79,84 @@ li {
   color: whitesmoke;
 }
 
-.searchButton {
-  color: white;
-  background-color: #053F68;
-  padding: .5rem 1rem;
-  border: 2px solid slategray;
-  border-bottom: 3px solid slategray;
+.App-search-container {
+  margin: 0 auto 1rem;
 }
 
-.searchButton:hover {
-  color: slategray;
+.App-search-form{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
-.searchButton:active {
-  border: 1px solid slategray;
-  border-bottom: 1px solid slategray;
-  transform: translateY(2px);
-  box-shadow: none;
+.searchInput {
+  border: 0.5px solid #032237;
+  font-family: 'Lato', sans-serif;
+  border-radius: 3px;
+  outline: none;
+  height: 22px;
+  padding: 0 1rem;
+  margin-right: 1rem;
 }
 
-.searchy {
-height: 1.5rem;
-width: 12rem;
-border: 1px solid #eee;
-margin-right: 5%;
+.form-container_button{
+  margin: 0 0 2rem 0;
+  min-width: 150px;
+}
+
+.App-form-container {
+  align-self: center;
+  width: 80%;
+  border: 0.5px solid #032237;
+  box-shadow: hsla(204, 95%, 22%, 0.16);
+  margin: 1rem auto;
+  padding: 0 0 1rem 0;
+}
+
+.formInputs {
+  border: 0.5px solid #032237;
+  font-family: 'Lato', sans-serif;
+  border-radius: 3px;
+  outline: none;
+  width: 70%;
+  height: 22px;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.button {
+  min-width: 150px;
+  height: 25px;
+  padding: 0 1rem;
+  background-color: #d9d9d9;
+  color: #032237;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+}
+
+.button:hover {
+  background-color: #032237;
+  color: #d9d9d9;
+  border: 1px solid #032237;
+}
+
+.App-footer {
+  margin-top: 2rem;
+  padding: 0.5rem;
+  background-color: #032237;
+  position: static;
+  bottom: 0;
+  width: 100%;
+}
+
+.App-footer-text {
+  color: #d9d9d9;
+  font-size: 10px;
+  text-align: center;
 }
 
 @media (min-width: 420px) {
@@ -109,6 +167,11 @@ margin-right: 5%;
   .rightDiv {
     margin-right: 0;
   }
+
+  .App-form-container {
+    width: 60%;
+  }
+
 }
 
 @media (min-width: 699px) {
@@ -127,21 +190,3 @@ margin-right: 5%;
     text-align: left;
     margin-top: 5%;
   }
-
-  .searchButton {
-    padding: .8rem 1.6rem;
-  }
-
-  .searchy {
-  height: 2.4rem;
-  width: 18rem;
-  }
-
-}
-
-
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
