@@ -51,7 +51,7 @@ class App extends Component {
     };
     axios.post('http://localhost:3030/products', newProduct)
     .then((response) => {
-      axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20').then((response) => {
+      axios.get(this.state.lastSearched).then((response) => {
         let newInventory = response.data.data.slice(0);
         this.setState({
           inventory: newInventory
