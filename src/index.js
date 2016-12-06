@@ -4,9 +4,7 @@ import App from './App';
 import './index.css';
 
 
-let inventory = [
-  {}
-]
+let inventory = [{}]
 
 ReactDOM.render(
   <App inventory={inventory} />,

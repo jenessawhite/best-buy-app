@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './laptoplogo.svg';
 import axios from 'axios';
-import './App.css';
 import List from './List';
+import './normalize.css';
+import './App.css';
 
 
 class App extends Component {
@@ -72,6 +73,18 @@ class App extends Component {
     if (confirmed === true){
       console.log('http://localhost:3030/products/'+id)
       axios.delete('http://localhost:3030/products/'+id)
+      .then((response) => {
+        axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20').then((response) => {
+          let newInventory = response.data.data.slice(0);
+          this.setState({
+            inventory: newInventory
+          })
+        })
+      }).catch((error) => {
+        console.log(error);
+        alert(error);
+      })
+
     } else {
       console.log("Whew!")
     }
@@ -157,8 +170,8 @@ class App extends Component {
         </p>
         <div className="App-search-container">
           <form onSubmit={this.getSearchedInfo.bind(this)} className="App-search-form">
-            <input  className="searchInputs searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
-            <button className="searchInputs button">Search</button>
+            <input  className="searchInput searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
+            <button className="button">Search</button>
           </form>
         </div>
         <button className="form-container_button button center" onClick={this.onToggleForm.bind(this)} >Add a Product</button>
@@ -169,9 +182,11 @@ class App extends Component {
             onDeleteClick={this.onDeleteClick.bind(this)} />
         </div>
         <div className="App-footer">
-          <a href="https://developer.bestbuy.com" className="App-footer-BBLogo">
+          <a href="https://developer.bestbuy.com" className="App-footer-BBLogo" target="_blank">
             <img src="https://developer.bestbuy.com/images/bestbuy-logo.png" alt="Best Buy Developer" />
           </a>
+          <p className="App-footer-text">This is an educational product that utilizes the Best Buy API Playground.
+          </p>
         </div>
     </div>
     );

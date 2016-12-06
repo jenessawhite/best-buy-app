@@ -1,7 +1,7 @@
 html, body {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .App {
@@ -19,7 +19,7 @@ html, body {
 }
 
 .App-header {
-  background-color: #053F68;
+  background-color: #032237;
   height: 150px;
   padding: 20px;
   color: white;
@@ -54,7 +54,6 @@ li {
 }
 
 .App-search-container {
-  min-width: 260px;
   margin: 0 auto 1rem;
 }
 
@@ -64,12 +63,11 @@ li {
   justify-content: center;
 }
 
-.searchInputs {
+.searchInput {
   border: 0.5px solid #032237;
   font-family: 'Lato', sans-serif;
   border-radius: 3px;
   outline: none;
-  width: 65%;
   height: 22px;
   padding: auto 1rem;
   margin-right: 1rem;
@@ -77,6 +75,7 @@ li {
 
 .form-container_button{
   margin: 0 0 2rem 0;
+  min-width: 150px;
 }
 
 .App-form-container {
@@ -104,7 +103,7 @@ li {
 }
 
 .button {
-  width: 90px;
+  min-width: 150px;
   height: 25px;
   padding: auto 1rem;
   background-color: #d9d9d9;
@@ -119,9 +118,19 @@ li {
   border: 1px solid #032237;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.App-footer {
+  margin-top: 2rem;
+  padding: 0.5rem;
+  background-color: #032237;
+  position: static;
+  bottom: 0;
+  width: 100%;
+}
+
+.App-footer-text {
+  color: #d9d9d9;
+  font-size: 10px;
+  text-align: center;
 }
 
 @media (min-width: 450px) {
