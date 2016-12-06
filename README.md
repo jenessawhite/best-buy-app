@@ -11,15 +11,17 @@ The API for this project was provided by [The Best Buy API Playground](https://g
 
 1. Clone the [Best Buy API Playground](https://github.com/bestbuy/api-playground)
 
-2. From the command line, run npm install within this project.
+2. From the command line, run `npm install` within this project.
 
-3. Run npm start to open with localhost.
+3. Run `npm start` to open with localhost.
 
-4. Open a new tab in your terminal. In the Best Buy API Playground, run npm install
+4. Open a new tab in your terminal. In the Best Buy API Playground, run `npm install`
 
-5. Run npm start.
+5. Run `npm start`
 
-6. If you run into an unexpected behavior, please let us know!
+6. Go to localhost:3000 to view the project.
+
+7. If you run into an unexpected behavior, please let us know!
 
 ##License
 
