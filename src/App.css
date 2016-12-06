@@ -42,7 +42,7 @@ ul {
 
 li {
   margin: 1rem;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .liContainerDiv {
@@ -52,8 +52,8 @@ li {
 
 .leftDiv {
   width: 25%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .clickMe {
@@ -72,13 +72,14 @@ li {
 
 .deleteButton {
   background-color: red;
+  color: white;
   padding: .5rem 1rem;
   border: none;
   border-radius: 3px;
 }
 
 .deleteButton:hover {
-  color: whitesmoke;
+  color: #ccc;
 }
 
 .App-search-container {
