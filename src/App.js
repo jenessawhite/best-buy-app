@@ -109,39 +109,42 @@ class App extends Component {
   }
 
   render() {
-    let addProductForm = <form className="form-container_form" onSubmit={this.onFormSubmit.bind(this)}>
+    let addProductForm =
+      <div className="App-form-container">
+        <h3>Add Product Form</h3>
+        <form className="form-container_form" onSubmit={this.onFormSubmit.bind(this)}>
+          <input onChange={this.onChanges.bind(this, 'name')} value={this.state.name} type="text" name="name" className="formInputs" placeholder="Product Name" required />
+          <br />
 
-                <input onChange={this.onChanges.bind(this, 'name')} value={this.state.name} type="text" name="name" className="formInputs" placeholder="Product Name" required />
-                <br />
+          <input onChange={this.onChanges.bind(this, 'model')} value={this.state.model} type="text" name="model" className="formInputs" placeholder="Product Model" required />
+          <br />
 
-                <input onChange={this.onChanges.bind(this, 'model')} value={this.state.model} type="text" name="model" className="formInputs" placeholder="Product Model" required />
-                <br />
+          <input onChange={this.onChanges.bind(this, 'description')} value={this.state.description} type="textarea" name="description" className="formInputs" placeholder="Product Description" required />
+          <br />
 
-                <input onChange={this.onChanges.bind(this, 'description')} value={this.state.description} type="textarea" name="description" className="formInputs" placeholder="Product Description" required />
-                <br />
+          <input onChange={this.onChanges.bind(this, 'price')} value={this.state.price} type="number" step="0.01" name="price" min="0.01" className="formInputs" placeholder="Product Price" required />
+          <br />
 
-                <input onChange={this.onChanges.bind(this, 'price')} value={this.state.price} type="number" step="0.01" name="price" min="0.01" className="formInputs" placeholder="Product Price" required />
-                <br />
+          <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" className="formInputs" placeholder="Product Image URL" />
+          <br />
 
-                <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" className="formInputs" placeholder="Product Image URL" />
-                <br />
+          <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" className="formInputs" required>
+          <option value="" disabled="disabled" defaultValue>Choose an Option</option>
+          <option value="blackTie">Black Tie</option>
+          <option value="bundle">Bundle</option>
+          <option value="hardGood">Hard Good</option>
+          <option value="movie">Movie</option>
+          <option value="music">Music</option>
+          <option value="software">Software</option>
+          </select>
+          <br />
 
-                <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" className="formInputs" required>
-                  <option value="" disabled="disabled" defaultValue>Choose an Option</option>
-                  <option value="blackTie">Black Tie</option>
-                  <option value="bundle">Bundle</option>
-                  <option value="hardGood">Hard Good</option>
-                  <option value="movie">Movie</option>
-                  <option value="music">Music</option>
-                  <option value="software">Software</option>
-                </select>
-                <br />
+          <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" className="formInputs" placeholder="Product UPC" required />
+          <br />
 
-                <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" className="formInputs" placeholder="Product UPC" required />
-                <br />
-
-                <input type="submit" value="Submit" className="formInputs searchButton" />
-              </form>
+          <input type="submit" value="Submit" className="formInputs button" />
+        </form>
+      </div>
 
     return (
       <div className="App">
@@ -150,24 +153,27 @@ class App extends Component {
           <h2>The Best of the Best Buy API</h2>
         </div>
         <p className="App-intro">
-        Welcome, we hope you enjoy your shopping experience.
+          Welcome, we hope you enjoy your shopping experience.
         </p>
         <div className="App-search-container">
-          <form onSubmit={this.getSearchedInfo.bind(this)}>
-            <input className="searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
-            <button>Search</button>
+          <form onSubmit={this.getSearchedInfo.bind(this)} className="App-search-form">
+            <input  className="searchInputs searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
+            <button className="searchInputs button">Search</button>
           </form>
         </div>
-        <div className="App-form-container">
-          <button className="form-container_header" onClick={this.onToggleForm.bind(this)} >Add a Product</button>
+        <button className="form-container_button button center" onClick={this.onToggleForm.bind(this)} >Add a Product</button>
           {!this.state.isFormShown ? null : addProductForm}
-        </div>
         <div className="App-list-container">
-        <List
-          inventory={this.state.inventory}
-          onDeleteClick={this.onDeleteClick.bind(this)} />
+          <List
+            inventory={this.state.inventory}
+            onDeleteClick={this.onDeleteClick.bind(this)} />
         </div>
-      </div>
+        <div className="App-footer">
+          <a href="https://developer.bestbuy.com" className="App-footer-BBLogo">
+            <img src="https://developer.bestbuy.com/images/bestbuy-logo.png" alt="Best Buy Developer" />
+          </a>
+        </div>
+    </div>
     );
   }
 }

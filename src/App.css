@@ -7,6 +7,10 @@ html, body {
 .App {
   text-align: center;
   font-family: 'Lato', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
 }
 
 .App-logo {
@@ -16,10 +20,10 @@ html, body {
 
 .App-header {
   background-color: #053F68;
- height: 150px;
- padding: 20px;
- color: white;
- font-family: 'Roboto', sans-serif;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-intro {
@@ -49,32 +53,79 @@ li {
   max-width: 25%
 }
 
-.clickMe {
-  font-size: 12px;
+.App-search-container {
+  min-width: 260px;
+  margin: 0 auto 1rem;
+}
+
+.App-search-form{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.searchInputs {
+  border: 0.5px solid #032237;
+  font-family: 'Lato', sans-serif;
+  border-radius: 3px;
+  outline: none;
+  width: 65%;
+  height: 22px;
+  padding: auto 1rem;
+  margin-right: 1rem;
+}
+
+.form-container_button{
+  margin: 0 0 2rem 0;
+}
+
+.App-form-container {
+  align-self: center;
+  width: 80%;
+  border: 0.5px solid #032237;
+  box-shadow: hsla(204, 95%, 22%, 0.16);
+  margin: 1rem auto;
+  padding: 0 0 1rem 0;
 }
 
 .formInputs {
-  border: 1px solid #032237;
+  border: 0.5px solid #032237;
+  font-family: 'Lato', sans-serif;
   border-radius: 3px;
   outline: none;
-  width: 150px;
+  width: 70%;
   height: 22px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  padding: auto 1rem;
 }
 
-.searchButton {
-  background-color: #3C92CA;
+.center {
+  margin: 0 auto;
+}
+
+.button {
+  width: 90px;
+  height: 25px;
+  padding: auto 1rem;
+  background-color: #d9d9d9;
   color: #032237;
-  border: 1px solid #032237;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
 }
 
-.searchButton:hover {
+.button:hover {
   background-color: #032237;
-  color: #3C92CA;
-  border: 1px solid #3C92CA;
+  color: #d9d9d9;
+  border: 1px solid #032237;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@media (min-width: 450px) {
+  .App-form-container {
+    width: 60%;
+  }
 }
