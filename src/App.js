@@ -24,7 +24,7 @@ class App extends Component {
     }
 
   componentDidMount () {
-    axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20')
+    axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=25')
     .then((response) => {
       var newInventory = response.data.data.slice(0);
       this.setState({
@@ -53,7 +53,15 @@ class App extends Component {
       axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20').then((response) => {
         let newInventory = response.data.data.slice(0);
         this.setState({
-          inventory: newInventory
+          inventory: newInventory,
+          name: '',
+          model: '',
+          description: '',
+          price: '',
+          image: '',
+          type: '',
+          upc: '',
+
         })
       })
     }).catch((error) => {
@@ -74,7 +82,7 @@ class App extends Component {
       console.log('http://localhost:3030/products/'+id)
       axios.delete('http://localhost:3030/products/'+id)
       .then((response) => {
-        axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=20').then((response) => {
+        axios.get('http://localhost:3030/products?$sort[price]=-1&$limit=25').then((response) => {
           let newInventory = response.data.data.slice(0);
           this.setState({
             inventory: newInventory
@@ -99,21 +107,19 @@ class App extends Component {
 
   getSearchedInfo(e){
     e.preventDefault();
-    console.log(this.state.newItemValue)
-    axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$select[]=name&$select[]=id&$select[]=model&$select[]=description&$select[]=image&$select[]=url&$select[]=price&$select[]=shipping&$sort[price]=-1&$limit=12')
+    axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$sort[price]=-1&$limit=25')
     .then((response) => {
-      console.log(response.data.data);
       var newInventory = response.data.data.slice(0);
-      console.log(newInventory);
       this.setState({
-        inventory: newInventory
+        inventory: newInventory,
+        newItemValue: ''
       })
-      console.log(this.state.inventory);
     })
     .catch((error) => {
-      console.log(error);
+      alert('We are currently experiencing an issue with our search. Please try again later')
     });
   }
+
   onToggleForm(e) {
     e.preventDefault();
     this.setState({
@@ -124,7 +130,7 @@ class App extends Component {
   render() {
     let addProductForm =
       <div className="App-form-container">
-        <h3>Add Product Form</h3>
+        <h3>Add a Product</h3>
         <form className="form-container_form" onSubmit={this.onFormSubmit.bind(this)}>
           <input onChange={this.onChanges.bind(this, 'name')} value={this.state.name} type="text" name="name" className="formInputs" placeholder="Product Name" required />
           <br />
@@ -141,18 +147,18 @@ class App extends Component {
           <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" className="formInputs" placeholder="Product Image URL" />
           <br />
 
-          <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" className="formInputs" required>
-          <option value="" disabled="disabled" defaultValue>Choose an Option</option>
-          <option value="blackTie">Black Tie</option>
-          <option value="bundle">Bundle</option>
-          <option value="hardGood">Hard Good</option>
-          <option value="movie">Movie</option>
-          <option value="music">Music</option>
-          <option value="software">Software</option>
-          </select>
+          <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" className="formInputs" placeholder="Product UPC" required />
           <br />
 
-          <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" className="formInputs" placeholder="Product UPC" required />
+          <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" className="formInputs" required>
+            <option value="" disabled="disabled" defaultValue>Choose an Option</option>
+            <option value="blackTie">Black Tie</option>
+            <option value="bundle">Bundle</option>
+            <option value="hardGood">Hard Good</option>
+            <option value="movie">Movie</option>
+            <option value="music">Music</option>
+            <option value="software">Software</option>
+          </select>
           <br />
 
           <input type="submit" value="Submit" className="formInputs button" />
@@ -168,14 +174,12 @@ class App extends Component {
         <p className="App-intro">
           Welcome, we hope you enjoy your shopping experience.
         </p>
-        <div className="App-search-container">
-          <form onSubmit={this.getSearchedInfo.bind(this)} className="App-search-form">
-            <input  className="searchInput searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
-            <button className="button">Search</button>
-          </form>
-        </div>
-        <button className="form-container_button button center" onClick={this.onToggleForm.bind(this)} >Add a Product</button>
-          {!this.state.isFormShown ? null : addProductForm}
+            <form onSubmit={this.getSearchedInfo.bind(this)} className="App-search-form flex-inner">
+              <input  className="searchInput" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
+              <button className="searchInput button">Search</button>
+              <button className="searchInput button" onClick={this.onToggleForm.bind(this)}>Add a Product</button>
+            </form>
+            {!this.state.isFormShown ? null : addProductForm}
         <div className="App-list-container">
           <List
             inventory={this.state.inventory}
