@@ -14,10 +14,11 @@ class App extends Component {
       type: '',
       id: '' ,
       model: '',
-      price: 0,
+      price: '',
       upc: '',
       image: '',
       description: '',
+      isFormShown: false
       }
     }
 
@@ -41,7 +42,7 @@ class App extends Component {
       name: this.state.name,
       model: this.state.model,
       description: this.state.description,
-      price: this.state.price,
+      price: parseFloat(this.state.price, 10),
       type: this.state.type,
       image: this.state.image,
       upc: this.state.upc
@@ -100,8 +101,48 @@ class App extends Component {
       console.log(error);
     });
   }
+  onToggleForm(e) {
+    e.preventDefault();
+    this.setState({
+      isFormShown: !this.state.isFormShown
+    })
+  }
 
   render() {
+    let addProductForm = <form className="form-container_form" onSubmit={this.onFormSubmit.bind(this)}>
+
+                <input onChange={this.onChanges.bind(this, 'name')} value={this.state.name} type="text" name="name" className="formInputs" placeholder="Product Name" required />
+                <br />
+
+                <input onChange={this.onChanges.bind(this, 'model')} value={this.state.model} type="text" name="model" className="formInputs" placeholder="Product Model" required />
+                <br />
+
+                <input onChange={this.onChanges.bind(this, 'description')} value={this.state.description} type="textarea" name="description" className="formInputs" placeholder="Product Description" required />
+                <br />
+
+                <input onChange={this.onChanges.bind(this, 'price')} value={this.state.price} type="number" step="0.01" name="price" min="0.01" className="formInputs" placeholder="Product Price" required />
+                <br />
+
+                <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" className="formInputs" placeholder="Product Image URL" />
+                <br />
+
+                <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" className="formInputs" required>
+                  <option value="" disabled="disabled" defaultValue>Choose an Option</option>
+                  <option value="blackTie">Black Tie</option>
+                  <option value="bundle">Bundle</option>
+                  <option value="hardGood">Hard Good</option>
+                  <option value="movie">Movie</option>
+                  <option value="music">Music</option>
+                  <option value="software">Software</option>
+                </select>
+                <br />
+
+                <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" className="formInputs" placeholder="Product UPC" required />
+                <br />
+
+                <input type="submit" value="Submit" className="formInputs" />
+              </form>
+
     return (
       <div className="App">
         <div className="App-header">
@@ -117,47 +158,16 @@ class App extends Component {
             <button>Search</button>
           </form>
         </div>
+        <div className="App-form-container">
+          <button className="form-container_header" onClick={this.onToggleForm.bind(this)} >Add a Product</button>
+          {!this.state.isFormShown ? null : addProductForm}
+        </div>
         <div className="App-list-container">
         <List
           inventory={this.state.inventory}
           onDeleteClick={this.onDeleteClick.bind(this)} />
         </div>
-        <div className="App-form-container">
-          <h3 className="form-container_header">Submit your own product</h3>
-          <form className="form-container_form" onSubmit={this.onFormSubmit.bind(this)}>
-            Product Name:
-            <input onChange={this.onChanges.bind(this, 'name')} value={this.state.name} type="text" name="name" required />
-            <br />
-            Product Model:
-            <input onChange={this.onChanges.bind(this, 'model')} value={this.state.model} type="text" name="model" required />
-            <br />
-            Product Description:
-            <input onChange={this.onChanges.bind(this, 'description')} value={this.state.description} type="textarea" name="description" required />
-            <br />
-            Product Price:
-            <input onChange={this.onChanges.bind(this, 'price')} value={this.state.price} type="number" step="0.01" name="price" min="0.01" required />
-            <br />
-            If you have an image of the product please upload it here:
-            <input onChange={this.onChanges.bind(this, 'image')} value={this.state.image} type="text" name="image" />
-            <br />
-            Please select product type:
-            <select onChange={this.onChanges.bind(this, 'type')} value={this.state.type} name="type" required>
-              <option value="" disabled="disabled" defaultValue>Choose an Option</option>
-              <option value="blackTie">Black Tie</option>
-              <option value="bundle">Bundle</option>
-              <option value="hardGood">Hard Good</option>
-              <option value="movie">Movie</option>
-              <option value="music">Music</option>
-              <option value="software">Software</option>
-            </select>
-            <br />
-            Product UPC:
-            <input onChange={this.onChanges.bind(this, 'upc')} value={this.state.upc} type="text" name="upc" required />
-            <br />
-            <input type="submit" value="Submit" />
-          </form>
       </div>
-    </div>
     );
   }
 }

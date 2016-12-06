@@ -49,6 +49,11 @@ li {
   font-size: 12px;
 }
 
+.formInputs {
+  border: 1px solid #032237;
+  outline: none;
+}
+
 
 
 @keyframes App-logo-spin {
