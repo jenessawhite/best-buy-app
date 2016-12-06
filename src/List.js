@@ -20,23 +20,24 @@ class List extends Component {
                   <div className="leftDiv">
                     <span>{item.name}</span>
                     <br />
-                    <span>Product ID: {item.id}</span>
-                    <br />
                     <a href={item.url}>
                     <img role="presentation" className="listImage" src={item.image} />
                     </a>
+                    <br />
                     <span className="clickMe">Click photo to go to Best Buy site</span>
 
-                    <br />
-                    <span>Price (USD): {item.price} plus {item.shipping} shipping</span>
                   </div>
                   <div className="rightDiv">
-                    <span>Product Model:{item.model}</span>
+                    <div>Price (USD): {item.price}</div>
                     <br />
-                    <span>Product Description:{item.description}</span>
+                    <div>Product Model: {item.model}
+                    <br />
+                     Product ID: {item.id}</div>
+                    <br />
+                    <span>Product Description: {item.description}</span>
                   </div>
                   <div className="deleteDiv">
-                    <button onClick={this.props.onDeleteClick.bind(this, item.id)} key={item.id}>Delete from list</button>
+                    <button className="deleteButton" onClick={this.props.onDeleteClick.bind(this, item.id)} key={item.id}>Delete</button>
                   </div>
                 </div>
               </li>

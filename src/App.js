@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './laptoplogo.svg';
 import axios from 'axios';
 import './App.css';
+
 import List from './List';
 
 
@@ -109,12 +110,12 @@ class App extends Component {
           <h2>The Best of the Best Buy API</h2>
         </div>
         <p className="App-intro">
-        Welcome, we hope you enjoy your shopping experience.
+        Welcome, this is for hypothetical employees to add or remove items from a catalog. Please use responsibly.
         </p>
         <div className="App-search-container">
           <form onSubmit={this.getSearchedInfo.bind(this)}>
             <input className="searchy" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
-            <button>Search</button>
+            <button className="searchButton">Search</button>
           </form>
         </div>
         <div className="App-list-container">
