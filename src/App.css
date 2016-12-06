@@ -52,7 +52,7 @@ li {
 
 .leftDiv {
   width: 25%;
-  margin-right: 12%;
+  margin-right: 0;
 }
 
 .clickMe {
@@ -73,6 +73,7 @@ li {
   background-color: red;
   padding: .5rem 1rem;
   border: none;
+  border-radius: 3px;
 }
 
 .deleteButton:hover {
@@ -160,6 +161,7 @@ li {
 }
 
 @media (min-width: 420px) {
+
   .leftDiv {
     margin-right: 5%;
   }
@@ -190,3 +192,5 @@ li {
     text-align: left;
     margin-top: 5%;
   }
+
+}
