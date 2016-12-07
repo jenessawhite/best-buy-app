@@ -17,7 +17,7 @@ class App extends Component {
       model: '',
       price: '',
       upc: '',
-      image: 'https://www.megazine3.de/wp-content/plugins/sgmbPro//img/no-image.png',
+      image: '',
       description: '',
       isFormShown: false,
       lastSearched: 'http://localhost:3030/products?$sort[price]=-1&$limit=20'
@@ -51,7 +51,8 @@ class App extends Component {
     };
     axios.post('http://localhost:3030/products', newProduct)
     .then((response) => {
-      axios.get(this.state.lastSearched).then((response) => {
+      axios.get(this.state.lastSearched)
+      .then((response) => {
         let newInventory = response.data.data.slice(0);
         this.setState({
           inventory: newInventory,
@@ -59,13 +60,18 @@ class App extends Component {
           model: '',
           description: '',
           price: '',
-          image: 'https://www.megazine3.de/wp-content/plugins/sgmbPro//img/no-image.png',
+          image: '',
           type: '',
           upc: '',
 
         })
       })
-    }).catch((error) => {
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      })
+    })
+    .catch((error) => {
       console.log(error);
       alert(error);
     })
@@ -89,11 +95,11 @@ class App extends Component {
             inventory: newInventory
           })
         })
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
         alert(error);
       })
-
     } else {
       console.log("Whew!")
     }
@@ -179,7 +185,6 @@ class App extends Component {
               <button className="searchInput button" onClick={this.onToggleForm.bind(this)}>Add a Product</button>
             </form>
             {!this.state.isFormShown ? null : addProductForm}
-
         <div className="App-list-container">
           <List
             inventory={this.state.inventory}

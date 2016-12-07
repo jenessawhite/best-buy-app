@@ -45,7 +45,7 @@ ul {
 
 li {
   margin: 1rem 2rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #dadada;
 }
 
 select {
@@ -93,7 +93,7 @@ select {
 }
 
 .App-search-form {
-  margin: 0 2rem 1rem;
+  margin: 1rem 2rem 1rem;
 }
 
 
@@ -101,7 +101,6 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 2rem 1rem;
 }
 
 .searchInput {
