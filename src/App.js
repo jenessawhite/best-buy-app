@@ -4,6 +4,7 @@ import axios from 'axios';
 import List from './List';
 import './normalize.css';
 import './App.css';
+import api from './Api'
 
 
 class App extends Component {
@@ -20,7 +21,7 @@ class App extends Component {
       image: '',
       description: '',
       isFormShown: false,
-      lastSearched: (api()+'/products?$sort[price]=-1&$limit=20')
+      lastSearched: api()+'/products?$sort[price]=-1&$limit=20'
       }
     }
 

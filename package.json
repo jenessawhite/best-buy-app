@@ -2,8 +2,10 @@
   "name": "best-buy-app",
   "version": "0.1.0",
   "private": true,
+  "deploy": "gh-pages -d build",
   "homepage": "http://jenessawhite.github.io/best-buy-app",
   "devDependencies": {
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
