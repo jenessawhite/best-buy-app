@@ -30,11 +30,11 @@ class List extends Component {
                   <div className="rightDiv">
                     <div>Price (USD): {item.price}</div>
                     <br />
-                    <div>Product Model: {item.model}
+                    <div>Model: {item.model}
                     <br />
-                     Product ID: {item.id}</div>
+                     ID: {item.id}</div>
                     <br />
-                    <span>Product Description: {item.description}</span>
+                    <span>Description: {item.description}</span>
                   </div>
                   </div>
                   <div className="deleteDiv">
