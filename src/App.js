@@ -173,9 +173,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>The Best of the Best Buy API</h2>
         </div>
-        <p className="App-intro">
-          Welcome, we hope you enjoy your shopping experience.
-        </p>
             <form onSubmit={this.getSearchedInfo.bind(this)} className="App-search-form flex-inner">
               <input  className="searchInput" type="text" placeholder="enter product name" onChange={this.onNewValue.bind(this)} value={this.state.newItemValue}/>
               <button className="searchInput button">Search</button>

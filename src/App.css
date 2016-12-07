@@ -92,12 +92,12 @@ select {
   color: #d9d9d9;
 }
 
-.App-searh-form {
+.App-search-form {
   margin: 0 2rem 1rem;
 }
 
 
-.flex-inner{
+.flex-inner {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -165,7 +165,7 @@ select {
   text-align: center;
 }
 
-@media (min-width: 450px) {
+@media (min-width: 425px) {
 
   .leftDiv {
     margin-right: 5%;
@@ -178,6 +178,10 @@ select {
   .flex-inner{
     flex-direction: row;
     justify-content: center;
+  }
+
+  .App-search-form {
+    margin-top: 2rem;
   }
 
 }
