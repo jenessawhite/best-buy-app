@@ -20,7 +20,7 @@ class App extends Component {
       image: '',
       description: '',
       isFormShown: false,
-      lastSearched: 'http://localhost:3030/products?$sort[price]=-1&$limit=20'
+      lastSearched: (api()+'/products?$sort[price]=-1&$limit=20')
       }
     }
 
@@ -49,7 +49,7 @@ class App extends Component {
       image: this.state.image,
       upc: this.state.upc
     };
-    axios.post('http://localhost:3030/products', newProduct)
+    axios.post(api()+'/products', newProduct)
     .then((response) => {
       axios.get(this.state.lastSearched)
       .then((response) => {
@@ -86,8 +86,8 @@ class App extends Component {
   onDeleteClick(id, e) {
     var confirmed = confirm("Do you want to permanently delete this product from the database?")
     if (confirmed === true){
-      console.log('http://localhost:3030/products/'+id)
-      axios.delete('http://localhost:3030/products/'+id)
+      console.log(api()+'/products/'+id)
+      axios.delete(api()+'/products/'+id)
       .then((response) => {
         axios.get(this.state.lastSearched).then((response) => {
           let newInventory = response.data.data.slice(0);
@@ -114,13 +114,13 @@ class App extends Component {
 
   getSearchedInfo(e){
     e.preventDefault();
-    axios.get('http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$sort[price]=-1&$limit=25')
+    axios.get(api()+'/products?name[$like]=*'+this.state.newItemValue+'*&$sort[price]=-1&$limit=25')
     .then((response) => {
       var newInventory = response.data.data.slice(0);
       this.setState({
         inventory: newInventory,
         newItemValue: '',
-        lastSearched: 'http://localhost:3030/products?name[$like]=*'+this.state.newItemValue+'*&$sort[price]=-1&$limit=25'
+        lastSearched: api()+'/products?name[$like]=*'+this.state.newItemValue+'*&$sort[price]=-1&$limit=25'
       })
     })
     .catch((error) => {
