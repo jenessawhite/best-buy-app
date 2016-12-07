@@ -17,7 +17,7 @@ class App extends Component {
       model: '',
       price: '',
       upc: '',
-      image: '',
+      image: 'https://www.megazine3.de/wp-content/plugins/sgmbPro//img/no-image.png',
       description: '',
       isFormShown: false,
       lastSearched: 'http://localhost:3030/products?$sort[price]=-1&$limit=20'
@@ -59,7 +59,7 @@ class App extends Component {
           model: '',
           description: '',
           price: '',
-          image: '',
+          image: 'https://www.megazine3.de/wp-content/plugins/sgmbPro//img/no-image.png',
           type: '',
           upc: '',
 

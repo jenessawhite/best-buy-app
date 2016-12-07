@@ -44,7 +44,7 @@ ul {
 }
 
 li {
-  margin: 1rem;
+  margin: 1rem 2rem;
   border-bottom: 1px solid #ccc;
 }
 
@@ -80,7 +80,7 @@ select {
 
 .deleteButton {
   background-color: #FF3333;
-  color: #fafafa;
+  color: #dadada;
   padding: .5rem 1rem;
   border: none;
   border-radius: 3px;
@@ -89,7 +89,7 @@ select {
 
 .deleteButton:hover {
   background-color: #ca2929;
-  color: #d9d9d9;
+  color: #fafafa;
 }
 
 .App-search-form {

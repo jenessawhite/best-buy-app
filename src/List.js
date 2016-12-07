@@ -20,7 +20,7 @@ class List extends Component {
                   <div className="leftDiv">
                     <span>{item.name}</span>
                     <br />
-                    <a href={item.url}>
+                    <a href={item.url} target="_blank">
                     <img role="presentation" className="listImage" src={item.image} />
                     </a>
                     <br />
